@@ -121,3 +121,23 @@ A: Because it combines three-stage shifting strategies to achieve global converg
 
 Q: What does [Wilkinson's polynomial] demonstrate?
 A: $W(x) = \prod_{k=1}^{20}(x - k)$ has simple integer roots $1, 2, \dots, 20$. Perturbing the coefficient of $x^{19}$ by $2^{-23}$ (one bit in single precision) moves some roots by over $10$! Shows that polynomial roots can be wildly ill-conditioned with respect to coefficients. Moral: root-finding accuracy depends on how the polynomial is REPRESENTED, not just its roots.
+
+## 2.11 Pattern Recognition
+
+Q: You need a root and you have a bracket $[a,b]$ with $f(a)f(b) < 0$ but no derivative. What method?
+A: Brent's method — guaranteed convergence (bisection safety net) plus superlinear speed (secant + inverse quadratic interpolation). Default in SciPy's `brentq`.
+
+Q: You need a root, you have $f'$ available cheaply, AND you have a good initial guess. What method?
+A: Newton's method — quadratic convergence per iteration, fastest in this regime.
+
+Q: You need a root and $f'$ is expensive or unavailable. What method?
+A: Secant method — superlinear (order $\varphi \approx 1.618$) without derivative evaluations. One $f$ call per iteration vs. Newton's two.
+
+Q: You need ALL roots of a polynomial of degree $n$. What method?
+A: Companion-matrix eigenvalues (`numpy.roots`) or Jenkins–Traub. Avoid Newton-with-deflation — deflation amplifies roundoff and degrades later roots.
+
+Q: You suspect a root has multiplicity $m > 1$ and Newton is converging linearly. What's the fix?
+A: Modified Newton: $x_{n+1} = x_n - m \cdot f(x_n)/f'(x_n)$. Restores quadratic convergence when $m$ is known.
+
+Q: Newton diverges or oscillates from your initial guess. What's the systematic fix?
+A: Safeguarded Newton — accept Newton step only if it stays inside a bracket and reduces $|f|$, else fall back to bisection for that step.
