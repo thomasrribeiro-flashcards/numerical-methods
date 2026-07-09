@@ -1,6 +1,6 @@
 +++
 order = 4
-subject = "Math"
+subject = "Mathematics"
 tags = ["math", "numerical-methods", "differentiation", "integration", "quadrature", "simpson", "gauss"]
 +++
 
@@ -55,7 +55,7 @@ A: Partition $[a, b]$ into $n$ even subintervals of width $h = (b-a)/n$. On each
 
 ## 4.7 Gauss Quadrature
 
-C: [Gauss quadrature] chooses nodes $x_i$ AND weights $w_i$ to maximize the polynomial degree exactly integrated — a $n$-point Gauss rule is exact for polynomials of degree $\leq 2n - 1$.
+C: [Gauss quadrature] chooses nodes $x_i$ AND weights $w_i$ to maximize the polynomial degree exactly integrated — an $n$-point rule is exact for polynomials of degree $\leq 2n - 1$.
 
 Q: Why does Gauss quadrature double the achievable accuracy for the same number of points?
 A: Because Newton–Cotes fixes the nodes, giving $n$ degrees of freedom (the weights). Gauss adjusts BOTH nodes and weights, giving $2n$ degrees of freedom — enough to exactly integrate polynomials of degree $2n - 1$. The optimal nodes turn out to be roots of orthogonal polynomials (Legendre on $[-1, 1]$, Hermite on $\mathbb{R}$ with weight $e^{-x^2}$, etc.).

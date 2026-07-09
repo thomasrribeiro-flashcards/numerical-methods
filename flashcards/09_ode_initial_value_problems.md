@@ -1,6 +1,6 @@
 +++
 order = 9
-subject = "Math"
+subject = "Mathematics"
 tags = ["math", "numerical-methods", "ode", "runge-kutta", "euler", "multistep", "adaptive"]
 +++
 
@@ -18,11 +18,14 @@ A: Because closed forms exist only for a handful of special classes (linear cons
 
 C: [Forward Euler] approximates $\mathbf{y}'= \mathbf{f}(t, \mathbf{y})$ by $\mathbf{y}_{n+1} = \mathbf{y}_n + h \mathbf{f}(t_n, \mathbf{y}_n)$ — take the current slope and step forward by $h$.
 
-Q: What is the [local truncation error] and [global error] of forward Euler?
-A: [Local]: $O(h^2)$ per step (from the Taylor series $\mathbf{y}(t + h) = \mathbf{y}(t) + h\mathbf{y}'(t) + \frac{h^2}{2}\mathbf{y}''(t) + \dots$, truncating at first order). [Global]: $O(h)$ over a fixed interval (local errors accumulate over $1/h$ steps). Forward Euler is "first-order accurate" — halving $h$ halves the error.
+Q: What is the [local truncation error] of forward Euler?
+A: $O(h^2)$ per step — from the Taylor series $\mathbf{y}(t + h) = \mathbf{y}(t) + h\mathbf{y}'(t) + \frac{h^2}{2}\mathbf{y}''(t) + \dots$, truncated at first order.
+
+Q: What is the [global error] of forward Euler over a fixed interval?
+A: $O(h)$ — the local $O(h^2)$ errors accumulate over $1/h$ steps. Forward Euler is "first-order accurate": halving $h$ halves the error.
 
 Q: What is [backward Euler] and why is it useful for stiff problems?
-A: $\mathbf{y}_{n+1} = \mathbf{y}_n + h \mathbf{f}(t_{n+1}, \mathbf{y}_{n+1})$ — the derivative is evaluated at the new (unknown) time. Implicit: each step solves a nonlinear system for $\mathbf{y}_{n+1}$. Unconditionally stable (A-stable), so enormous time steps are permitted for stiff systems where forward Euler would explode. Chapter 10 covers stiffness.
+A: $\mathbf{y}_{n+1} = \mathbf{y}_n + h \mathbf{f}(t_{n+1}, \mathbf{y}_{n+1})$ — the derivative is evaluated at the new (unknown) time. Implicit: each step solves a nonlinear system for $\mathbf{y}_{n+1}$. Unconditionally stable (A-stable), so enormous time steps are permitted for stiff systems where forward Euler would explode.
 
 ## 9.3 Consistency, Stability, Convergence
 

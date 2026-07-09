@@ -1,6 +1,6 @@
 +++
 order = 12
-subject = "Math"
+subject = "Mathematics"
 tags = ["math", "numerical-methods", "fem", "spectral", "galerkin", "fft", "weak-form"]
 +++
 

@@ -1,6 +1,6 @@
 +++
 order = 1
-subject = "Math"
+subject = "Mathematics"
 tags = ["math", "numerical-methods", "floating-point", "error-analysis", "conditioning", "stability"]
 +++
 
@@ -12,7 +12,7 @@ Q: Why do scientific problems usually require numerical methods rather than anal
 A: Because most real models — nonlinear ODEs, high-dimensional PDEs, large linear systems, transcendental equations — have no closed-form solution, or closed forms that are impossible to evaluate by hand. Computers compute approximations with controlled error. Every field of computational science (physics, biology, engineering, finance, ML) runs on numerical algorithms.
 
 Q: What's the difference between "numerical analysis" and "scientific computing"?
-A: [Numerical analysis] studies the mathematics of approximate algorithms — convergence rates, stability, error bounds. [Scientific computing] is the practical discipline of using those algorithms at scale — performance, software engineering, hardware utilization. The line is blurry; most practitioners do both. This deck emphasizes the analysis side, with computational consequences noted.
+A: [Numerical analysis] studies the mathematics of approximate algorithms — convergence rates, stability, error bounds. [Scientific computing] is the practical discipline of using those algorithms at scale — performance, software engineering, hardware utilization. The line is blurry; most practitioners do both.
 
 ## 1.2 Floating-Point Representation
 
@@ -50,7 +50,7 @@ A: It represents unrepresentable magnitudes. Produced by overflow (e.g., $10^{30
 Q: Why does IEEE 754 distinguish $+0$ from $-0$?
 A: Because signed zero preserves the direction of approach through intermediate computations. $1/(+0) = +\infty$ but $1/(-0) = -\infty$; $\text{atan2}(+0, -1) = \pi$ but $\text{atan2}(-0, -1) = -\pi$. The sign bit carries information even when the magnitude is zero — valuable in branch cuts of complex functions.
 
-C: [NaN] (Not a Number) is IEEE 754's result for undefined operations like $0/0$, $\infty - \infty$, and $\sqrt{-1}$.
+C: [NaN (Not a Number)] is IEEE 754's result for undefined operations like $0/0$, $\infty - \infty$, and $\sqrt{-1}$.
 
 Q: Why does NaN propagate through arithmetic?
 A: Because any operation with NaN returns NaN by design — so a single undefined step taints the whole computation, making errors detectable at the end rather than silently corrupting results. Contrast with returning a dummy value like $0$, which would hide the bug.
@@ -117,5 +117,11 @@ A: Because repeated addition adds $O(n)$ rounding errors, each of order $u \|x\|
 
 ## 1.12 Choosing Precision
 
-Q: When is `float32` sufficient vs. when do you need `float64`?
-A: [`float32`] (single): 7 digits — OK for rendering, deep learning training (with careful loss scaling), signal processing with bounded dynamic range. [`float64`] (double): 16 digits — default for scientific computing, needed whenever you accumulate many values (Monte Carlo), solve ill-conditioned systems, or simulate long-time dynamics. For extreme precision: arbitrary-precision libraries (`mpmath`, MPFR) trade speed for arbitrary digits.
+Q: When is `float32` (single precision, ~7 digits) sufficient?
+A: When precision needs are modest and dynamic range is bounded: rendering, deep learning training (with careful loss scaling), signal processing.
+
+Q: When do you need `float64` (double precision, ~16 digits)?
+A: Whenever you accumulate many values (Monte Carlo), solve ill-conditioned systems, or simulate long-time dynamics — the default for scientific computing.
+
+Q: What do you reach for when even `float64` precision is not enough?
+A: Arbitrary-precision libraries (`mpmath`, MPFR) — they trade speed for arbitrary digits.

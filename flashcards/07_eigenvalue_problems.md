@@ -1,6 +1,6 @@
 +++
 order = 7
-subject = "Math"
+subject = "Mathematics"
 tags = ["math", "numerical-methods", "linear-algebra", "eigenvalues", "qr-algorithm", "power-iteration", "lanczos", "arnoldi"]
 +++
 
@@ -8,7 +8,7 @@ tags = ["math", "numerical-methods", "linear-algebra", "eigenvalues", "qr-algori
 
 ## 7.1 The Eigenvalue Problem
 
-C: The [eigenvalue problem] finds scalars $\lambda$ and nonzero vectors $\mathbf{v}$ with $A \mathbf{v} = \lambda \mathbf{v}$. $\lambda$ is an eigenvalue and $\mathbf{v}$ is the corresponding eigenvector.
+C: The eigenvalue problem finds scalars $\lambda$ and nonzero vectors $\mathbf{v}$ with [$A \mathbf{v} = \lambda \mathbf{v}$]. $\lambda$ is an eigenvalue and $\mathbf{v}$ is the corresponding eigenvector.
 
 Q: Why is eigenvalue computation inherently iterative, unlike linear-system solving?
 A: Because eigenvalues are roots of the characteristic polynomial $\det(A - \lambda I) = 0$, which for degree $\geq 5$ has no closed-form solution (Abel–Ruffini). Every eigenvalue algorithm is therefore iterative: build a sequence converging to the spectrum. No algorithm can find eigenvalues exactly in finite time.
@@ -47,7 +47,7 @@ A: After finding an eigenvalue $\lambda_1$ and eigenvector $\mathbf{x}_1$, modif
 
 ## 7.5 The QR Algorithm
 
-C: The [QR algorithm] iterates $A_k = Q_k R_k$, $A_{k+1} = R_k Q_k$ — converging under mild assumptions to an upper-triangular (or quasi-triangular) matrix whose diagonal holds the eigenvalues.
+C: The QR algorithm iterates $A_k = Q_k R_k$, [$A_{k+1} = R_k Q_k$] — converging under mild assumptions to an upper-triangular (or quasi-triangular) matrix whose diagonal holds the eigenvalues.
 
 Q: Why is the QR algorithm the gold standard for computing all eigenvalues of a dense matrix?
 A: Because it is globally convergent (from any starting matrix), works on the matrix directly without forming characteristic polynomials, reveals the full spectrum, and with shifts achieves cubic convergence per eigenvalue. LAPACK's `dgeev` and `dsyev` are all QR-algorithm-based. Cost: $O(n^3)$ — practical up to $n \sim 10^4$.
@@ -91,7 +91,7 @@ A: Find $\lambda, \mathbf{x}$ such that $(A - \lambda B)\mathbf{x} = \mathbf{0}$
 
 ## 7.10 Singular Value Decomposition
 
-C: The [singular value decomposition] (SVD) of $A \in \mathbb{R}^{m \times n}$ writes $A = U\Sigma V^T$ with orthogonal $U, V$ and diagonal $\Sigma$ of nonnegative [singular values].
+C: The singular value decomposition (SVD) of $A \in \mathbb{R}^{m \times n}$ writes [$A = U\Sigma V^T$] with orthogonal $U, V$ and diagonal $\Sigma$ of nonnegative singular values.
 
 Q: Why is SVD more fundamental than eigendecomposition for general matrices?
 A: Because SVD exists for EVERY matrix (rectangular, singular, etc.) — eigendecomposition exists only for square matrices and may fail for non-diagonalizable ones. SVD reveals numerical rank, condition number ($\sigma_{\max}/\sigma_{\min}$), optimal low-rank approximations (Eckart–Young), and the [pseudo-inverse]. The swiss-army-knife of numerical linear algebra.
@@ -109,5 +109,17 @@ A: A matrix whose eigenvectors do not span $\mathbb{R}^n$ — has a Jordan block
 
 ## 7.12 Choosing an Algorithm
 
-Q: How do you pick an eigenvalue algorithm for your problem?
-A: Small dense $A$ (all eigenvalues) → [QR algorithm] (`numpy.linalg.eig`). Large sparse $A$, few extremal eigenvalues → [Lanczos] (symmetric) or [Arnoldi] (general), both via ARPACK / `scipy.sparse.linalg.eigs`. Interior eigenvalues near a target → [shift-invert] Arnoldi. One dominant eigenvalue only → [power iteration]. Any matrix, singular values/rank → [SVD] (`numpy.linalg.svd`).
+Q: Which eigenvalue algorithm computes ALL eigenvalues of a small dense matrix?
+A: The [QR algorithm] (`numpy.linalg.eig`).
+
+Q: Which eigenvalue algorithms extract a few extremal eigenvalues of a large sparse matrix?
+A: [Lanczos] (symmetric) or [Arnoldi] (general), both via ARPACK / `scipy.sparse.linalg.eigs`.
+
+Q: Which eigenvalue method targets interior eigenvalues near a given shift for a large sparse matrix?
+A: [Shift-invert] Arnoldi.
+
+Q: Which eigenvalue method suffices when only the single dominant eigenvalue is needed?
+A: [Power iteration].
+
+Q: Which decomposition should be used for singular values or numerical rank of any matrix?
+A: The [SVD] (`numpy.linalg.svd`).

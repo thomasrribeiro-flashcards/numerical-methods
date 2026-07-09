@@ -1,6 +1,6 @@
 +++
 order = 2
-subject = "Math"
+subject = "Mathematics"
 tags = ["math", "numerical-methods", "root-finding", "bisection", "newton", "secant", "fixed-point"]
 +++
 
@@ -16,7 +16,7 @@ A: Because closed-form solutions exist only for special cases (quadratics, cubic
 
 ## 2.2 Bisection Method
 
-C: The [bisection method] solves $f(x) = 0$ on $\lbrack a, b\rbrack $ where $f(a)f(b) < 0$ by repeatedly bisecting and keeping the half containing a sign change.
+C: The [bisection method] solves $f(x) = 0$ on $\lbrack a, b\rbrack $ where $f(a)f(b) < 0$ by repeatedly halving the interval and keeping the half containing a sign change.
 
 Q: Why is the bisection method guaranteed to converge?
 A: By the intermediate value theorem: continuous $f$ with $f(a)f(b) < 0$ has a root in $[a, b]$. Each iteration halves the interval containing the root, so the interval length shrinks as $(b - a)/2^n$. Guaranteed convergence to within any tolerance — no choice of starting guess can prevent it.
@@ -66,7 +66,7 @@ A: [Superlinear] with order $\varphi = (1 + \sqrt{5})/2 \approx 1.618$ (the gold
 
 ## 2.5 Fixed-Point Iteration
 
-C: [Fixed-point iteration]: rewrite $f(x) = 0$ as $x = g(x)$, then iterate $x_{n+1} = g(x_n)$. A fixed point of $g$ is a root of $f$.
+C: [Fixed-point iteration]: rewrite $f(x) = 0$ as $x = g(x)$, then iterate $x_{n+1} = g(x_n)$. A solution of $x = g(x)$ is a root of $f$.
 
 Q: When does fixed-point iteration converge?
 A: The [contraction mapping theorem]: if $|g'(x)| \leq L < 1$ on an interval containing the fixed point, iteration converges with linear rate $L$. If $g'(x^*) = 0$, convergence is quadratic (Newton's method is a fixed-point iteration with this property). Diverges if $|g'(x^*)| > 1$.
@@ -116,8 +116,8 @@ A: Because polynomials have structure that generic root-finders miss: all roots 
 Q: How does the [Durand–Kerner] method find all roots of a polynomial simultaneously?
 A: Start with $n$ distinct initial guesses $z_1^{(0)}, \dots, z_n^{(0)}$ (spread around a circle in $\mathbb{C}$). Iterate each guess by $z_i^{(k+1)} = z_i^{(k)} - p(z_i^{(k)}) / \prod_{j \neq i}(z_i^{(k)} - z_j^{(k)})$. Converges cubically to all roots simultaneously when well-initialized. Advantage over Newton: no root needs to be deflated.
 
-Q: Why do numerical libraries default to [Jenkins–Traub] for polynomial root finding?
-A: Because it combines three-stage shifting strategies to achieve global convergence (from any starting point), works directly with complex arithmetic, and handles near-multiple roots gracefully. `numpy.roots` uses a companion-matrix eigenvalue approach; Fortran/C libraries (SLATEC, RPOLY) use Jenkins–Traub.
+Q: Why do classic Fortran/C libraries use [Jenkins–Traub] for polynomial root finding?
+A: Because it combines three-stage shifting strategies to achieve global convergence (from any starting point), works directly with complex arithmetic, and handles near-multiple roots gracefully. `numpy.roots` uses a companion-matrix eigenvalue approach instead; Fortran/C libraries (SLATEC, RPOLY) use Jenkins–Traub.
 
 Q: What does [Wilkinson's polynomial] demonstrate?
 A: $W(x) = \prod_{k=1}^{20}(x - k)$ has simple integer roots $1, 2, \dots, 20$. Perturbing the coefficient of $x^{19}$ by $2^{-23}$ (one bit in single precision) moves some roots by over $10$! Shows that polynomial roots can be wildly ill-conditioned with respect to coefficients. Moral: root-finding accuracy depends on how the polynomial is REPRESENTED, not just its roots.

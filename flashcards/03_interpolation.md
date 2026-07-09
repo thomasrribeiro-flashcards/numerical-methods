@@ -1,6 +1,6 @@
 +++
 order = 3
-subject = "Math"
+subject = "Mathematics"
 tags = ["math", "numerical-methods", "interpolation", "lagrange", "splines", "chebyshev", "runge"]
 +++
 
@@ -17,7 +17,7 @@ A: Interpolation: $p(x_i) = y_i$ EXACTLY for every data point. Regression: $p$ m
 ## 3.2 Polynomial Interpolation: Existence and Uniqueness
 
 Q: Why is there exactly one polynomial of degree $\leq n$ interpolating $n + 1$ points?
-A: Existence: Lagrange's construction below gives one explicitly. Uniqueness: two such polynomials $p, q$ would have $p - q$ of degree $\leq n$ with $n + 1$ zeros — forcing $p - q = 0$ by the fundamental theorem of algebra. Interpolating polynomial is unique up to representation.
+A: Existence: Lagrange's construction gives one explicitly. Uniqueness: two such polynomials $p, q$ would have $p - q$ of degree $\leq n$ with $n + 1$ zeros — forcing $p - q = 0$ by the fundamental theorem of algebra. Interpolating polynomial is unique up to representation.
 
 ## 3.3 Lagrange Interpolation
 
@@ -46,14 +46,14 @@ A: By using LOW-DEGREE polynomials on subintervals rather than one high-degree g
 
 ## 3.6 Chebyshev Interpolation
 
-C: The [Chebyshev nodes of the first kind] on $\lbrack -1, 1\rbrack $ are $x_k = \cos\left(\frac{(2k + 1)\pi}{2(n+1)}\right)$ for $k = 0, 1, \dots, n$ — zeros of the degree-$(n+1)$ Chebyshev polynomial.
+C: The Chebyshev nodes of the first kind on $\lbrack -1, 1\rbrack $ are [$x_k = \cos\left(\frac{(2k + 1)\pi}{2(n+1)}\right)$] for $k = 0, 1, \dots, n$ — zeros of the degree-$(n+1)$ Chebyshev polynomial.
 
 Q: Why do Chebyshev nodes give near-optimal polynomial interpolation?
 A: Because they MINIMIZE the maximum of the error polynomial $\prod (x - x_k)$ over $[-1, 1]$. By the error formula $f - p = \frac{f^{(n+1)}(\xi)}{(n+1)!} \prod(x - x_k)$, minimizing the product minimizes the worst-case error. For smooth $f$, Chebyshev interpolation converges uniformly with rate comparable to the best polynomial approximation.
 
 ## 3.7 Piecewise Linear and Cubic Splines
 
-C: A [spline] is a piecewise polynomial: on each subinterval $\lbrack x_i, x_{i+1}\rbrack $, the spline is a polynomial of a fixed degree $k$, joined at the nodes with continuity up to derivative order $k - 1$.
+C: A [spline] is a piecewise polynomial: on each subinterval $\lbrack x_i, x_{i+1}\rbrack $, it is a polynomial of a fixed degree $k$, joined at the nodes with continuity up to derivative order $k - 1$.
 
 Q: Why are [cubic splines] $C^2$-continuous at the interior nodes?
 A: Because the piecewise cubics are joined with matching value, first derivative, AND second derivative at each interior $x_i$. Two continuous derivatives make the curve visually smooth — no visible kinks or curvature jumps — which is why splines look more natural than piecewise linear or piecewise quadratic interpolants.

@@ -1,6 +1,6 @@
 +++
 order = 5
-subject = "Math"
+subject = "Mathematics"
 tags = ["math", "numerical-methods", "linear-algebra", "gaussian-elimination", "lu", "cholesky", "qr"]
 +++
 
@@ -16,7 +16,7 @@ A: Because computing $A^{-1}$ explicitly costs $O(n^3)$ AND applies it inaccurat
 
 ## 5.2 Triangular Systems
 
-C: A [triangular system] $T \mathbf{x} = \mathbf{b}$ with $T$ upper- or lower-triangular can be solved in $O(n^2)$ by [back-substitution] (upper) or [forward-substitution] (lower).
+C: A triangular system $T \mathbf{x} = \mathbf{b}$ can be solved in $O(n^2)$ by [back-substitution] when $T$ is upper-triangular, or by [forward-substitution] when $T$ is lower-triangular.
 
 Q: Why is solving a triangular system cheap compared to a general system?
 A: Because each equation introduces exactly one new unknown: in upper-triangular, the last row gives $x_n$ directly; substitute into row $n-1$ to find $x_{n-1}$; and so on. No search, no factoring — just $n$ steps of scalar division and multiplication each touching one row. Total cost $\sim n^2$ vs. $n^3$ for elimination.
@@ -47,7 +47,7 @@ A: On specially constructed matrices (Wilkinson's "pivot-growth" example) where 
 
 ## 5.5 LU Factorization
 
-C: An [LU factorization] writes $A = LU$ where $L$ is unit lower-triangular and $U$ is upper-triangular. With partial pivoting: $PA = LU$ for a permutation matrix $P$.
+C: An LU factorization writes $A = LU$ where $L$ is [unit lower-triangular] and $U$ is [upper-triangular]. With partial pivoting: $PA = LU$ for a permutation matrix $P$.
 
 Q: How does LU factorization reuse work when solving $A \mathbf{x}_i = \mathbf{b}_i$ for many right-hand sides?
 A: Factor $A = LU$ once (cost $O(n^3)$). For each new $\mathbf{b}_i$: solve $L \mathbf{y} = \mathbf{b}_i$ by forward-substitution and $U \mathbf{x}_i = \mathbf{y}$ by back-substitution (cost $O(n^2)$ per solve). Crucial for problems where the same matrix appears repeatedly — implicit time stepping, Newton iteration with fixed Jacobian.
@@ -67,7 +67,7 @@ A: Because the algorithm takes a square root of a diagonal entry at each step: $
 
 ## 5.7 QR Factorization
 
-C: A [QR factorization] writes $A = QR$ where $Q$ has orthonormal columns ($Q^T Q = I$) and $R$ is upper-triangular.
+C: A QR factorization writes $A = QR$ where $Q$ has [orthonormal columns ($Q^T Q = I$)] and $R$ is [upper-triangular].
 
 Q: Why is QR factorization preferred over the normal equations for least squares?
 A: Because solving $A^T A \mathbf{x} = A^T \mathbf{b}$ squares the condition number: $\kappa(A^T A) = \kappa(A)^2$. QR computes least squares directly by solving $R \mathbf{x} = Q^T \mathbf{b}$ with condition number only $\kappa(A)$. For ill-conditioned $A$, QR preserves digits that normal equations would lose.
@@ -114,5 +114,14 @@ A: Via [condition number estimators] (LAPACK's `dgecon`): apply $A^{-1}$ to care
 
 ## 5.12 Choosing a Direct Solver
 
-Q: How do you choose between LU, Cholesky, and QR for a given linear system?
-A: Use [Cholesky] if $A$ is symmetric positive-definite (cheapest, most stable). Use [LU with partial pivoting] for general square $A$ (default in `numpy.linalg.solve`, LAPACK's `dgesv`). Use [QR] when $A$ is rectangular (least squares), very ill-conditioned, or when you want to avoid forming normal equations. Use [sparse solvers] (SuperLU, MUMPS, UMFPACK) whenever $A$ has $\ll n^2$ nonzeros.
+Q: Which direct solver should be used for a symmetric positive-definite linear system?
+A: [Cholesky] — cheapest and most stable of the direct solvers.
+
+Q: Which direct solver is the default for a general square linear system?
+A: [LU with partial pivoting] — the default in `numpy.linalg.solve` and LAPACK's `dgesv`.
+
+Q: When is QR the right direct solver for a linear system?
+A: When $A$ is rectangular (least squares), very ill-conditioned, or when you want to avoid forming normal equations.
+
+Q: When should sparse direct solvers (SuperLU, MUMPS, UMFPACK) be used?
+A: Whenever $A$ has $\ll n^2$ nonzeros.

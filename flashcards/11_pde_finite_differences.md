@@ -1,6 +1,6 @@
 +++
 order = 11
-subject = "Math"
+subject = "Mathematics"
 tags = ["math", "numerical-methods", "pde", "finite-differences", "heat-equation", "wave-equation", "cfl"]
 +++
 
@@ -29,7 +29,7 @@ A: Discretize with 5-point stencil + Dirichlet BCs → sparse symmetric positive
 
 ## 11.4 Explicit Scheme for Heat Equation
 
-C: The [FTCS scheme] (Forward-Time, Centered-Space) for $u_t = \alpha u_{xx}$: $u_i^{n+1} = u_i^n + \alpha \frac{\Delta t}{h^2}(u_{i+1}^n - 2 u_i^n + u_{i-1}^n)$.
+C: The [FTCS (Forward-Time, Centered-Space)] scheme for $u_t = \alpha u_{xx}$: $u_i^{n+1} = u_i^n + \alpha \frac{\Delta t}{h^2}(u_{i+1}^n - 2 u_i^n + u_{i-1}^n)$.
 
 Q: What is the [CFL-like] stability condition for FTCS on the heat equation?
 A: $\alpha \Delta t / h^2 \leq 1/2$. Violating it: $u$ oscillates with exploding amplitude. Since $\Delta t$ scales as $h^2$, refining the grid by $2\times$ forces $4\times$ more time steps — $8\times$ total work for 1D, worse in higher dimensions. This scaling makes FTCS impractical for long-time heat simulation on fine grids.

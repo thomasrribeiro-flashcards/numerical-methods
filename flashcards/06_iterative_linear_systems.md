@@ -1,6 +1,6 @@
 +++
 order = 6
-subject = "Math"
+subject = "Mathematics"
 tags = ["math", "numerical-methods", "linear-algebra", "iterative", "jacobi", "conjugate-gradient", "gmres", "krylov"]
 +++
 
@@ -56,7 +56,7 @@ A: Because they are exactly the information accessible by matrix-vector products
 
 ## 6.7 Conjugate Gradient
 
-C: [Conjugate gradient] (CG) solves $A\mathbf{x} = \mathbf{b}$ for SPD $A$ by iteratively minimizing the quadratic $\phi(\mathbf{x}) = \frac{1}{2}\mathbf{x}^T A \mathbf{x} - \mathbf{b}^T \mathbf{x}$ along $A$-conjugate directions.
+C: Conjugate gradient (CG) solves $A\mathbf{x} = \mathbf{b}$ for SPD $A$ by iteratively minimizing the quadratic $\phi(\mathbf{x}) = \frac{1}{2}\mathbf{x}^T A \mathbf{x} - \mathbf{b}^T \mathbf{x}$ along [$A$-conjugate directions].
 
 Q: Why does conjugate gradient converge in at most $n$ iterations in exact arithmetic?
 A: Because the iterates lie in $\mathcal{K}_k(A, \mathbf{b})$ which grows one dimension per iteration; after $n$ iterations, $\mathcal{K}_n = \mathbb{R}^n$, forcing the optimum. In practice, roundoff and finite precision prevent exact termination — but convergence to tolerance usually happens in far fewer than $n$ steps.
@@ -106,5 +106,17 @@ A: Combine: (i) relative residual $\|\mathbf{r}_k\|/\|\mathbf{b}\| < \tau$ (most
 Q: How do you choose between direct and iterative solvers?
 A: Use [direct] for moderate $n$ ($\leq 10^5$ in 3D or $\leq 10^6$ in 2D), multiple right-hand sides with same $A$, or dense $A$. Use [iterative] for huge sparse systems, matrix-free operators (stencil-based, Jacobian-free Newton–Krylov), or when only approximate solutions are needed. Hybrid: use a coarse direct solve as preconditioner for iterative.
 
-Q: How do you choose a Krylov method for a given matrix?
-A: SPD → [CG]. Symmetric indefinite → [MINRES]. Nonsymmetric with available memory → [GMRES (restarted)]. Nonsymmetric, memory-constrained → [BiCGStab]. For all: good preconditioning (ILU, multigrid, domain decomposition) matters more than which Krylov method you pick.
+Q: Which Krylov method should be used for an SPD matrix?
+A: [CG] (conjugate gradient).
+
+Q: Which Krylov method should be used for a symmetric indefinite matrix?
+A: [MINRES].
+
+Q: Which Krylov method should be used for a nonsymmetric matrix when memory is available?
+A: [GMRES (restarted)].
+
+Q: Which Krylov method should be used for a nonsymmetric matrix under tight memory constraints?
+A: [BiCGStab].
+
+Q: What matters more than the choice of Krylov method for iterative solving?
+A: Good preconditioning (ILU, multigrid, domain decomposition).
