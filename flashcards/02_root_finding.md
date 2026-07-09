@@ -16,7 +16,7 @@ A: Because closed-form solutions exist only for special cases (quadratics, cubic
 
 ## 2.2 Bisection Method
 
-C: The [bisection method] solves $f(x) = 0$ on $[a, b]$ where $f(a)f(b) < 0$ by repeatedly bisecting and keeping the half containing a sign change.
+C: The [bisection method] solves $f(x) = 0$ on $\lbrack a, b\rbrack $ where $f(a)f(b) < 0$ by repeatedly bisecting and keeping the half containing a sign change.
 
 Q: Why is the bisection method guaranteed to converge?
 A: By the intermediate value theorem: continuous $f$ with $f(a)f(b) < 0$ has a root in $[a, b]$. Each iteration halves the interval containing the root, so the interval length shrinks as $(b - a)/2^n$. Guaranteed convergence to within any tolerance — no choice of starting guess can prevent it.

@@ -31,7 +31,7 @@ A: For linear multistep methods: CONSISTENCY (local truncation error $\to 0$ as 
 
 ## 9.4 Runge–Kutta Methods
 
-C: [Runge–Kutta] methods approximate $\mathbf{y}(t + h)$ by evaluating $\mathbf{f}$ at multiple "stages" within $[t, t + h]$ and combining linearly — no memory of past steps needed.
+C: [Runge–Kutta] methods approximate $\mathbf{y}(t + h)$ by evaluating $\mathbf{f}$ at multiple "stages" within $\lbrack t, t + h\rbrack $ and combining linearly — no memory of past steps needed.
 
 Q: Why does [classical RK4] achieve fourth-order accuracy with four $\mathbf{f}$-evaluations per step?
 A: Because the coefficients $k_i$ and weights are chosen so that the Taylor expansion of $\mathbf{y}_{n+1}$ matches $\mathbf{y}(t_{n+1})$ through $O(h^4)$ — the first five terms. Result: $\mathbf{y}_{n+1} = \mathbf{y}_n + \frac{h}{6}(k_1 + 2k_2 + 2k_3 + k_4)$ where $k_i$ are slopes at sampled intermediate points. Global error $O(h^4)$.
