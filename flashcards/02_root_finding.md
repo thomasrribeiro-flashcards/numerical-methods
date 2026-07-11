@@ -1,6 +1,6 @@
 +++
 order = 2
-subject = "Mathematics"
+subject = "mathematics"
 tags = ["math", "numerical-methods", "root-finding", "bisection", "newton", "secant", "fixed-point"]
 +++
 

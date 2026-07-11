@@ -1,6 +1,6 @@
 +++
 order = 4
-subject = "Mathematics"
+subject = "mathematics"
 tags = ["math", "numerical-methods", "differentiation", "integration", "quadrature", "simpson", "gauss"]
 +++
 

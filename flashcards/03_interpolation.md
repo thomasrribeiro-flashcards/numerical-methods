@@ -1,6 +1,6 @@
 +++
 order = 3
-subject = "Mathematics"
+subject = "mathematics"
 tags = ["math", "numerical-methods", "interpolation", "lagrange", "splines", "chebyshev", "runge"]
 +++
 

@@ -1,6 +1,6 @@
 +++
 order = 8
-subject = "Mathematics"
+subject = "mathematics"
 tags = ["math", "numerical-methods", "optimization", "newton", "bfgs", "gradient-descent", "trust-region"]
 +++
 

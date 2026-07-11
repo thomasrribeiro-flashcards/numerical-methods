@@ -1,6 +1,6 @@
 +++
 order = 7
-subject = "Mathematics"
+subject = "mathematics"
 tags = ["math", "numerical-methods", "linear-algebra", "eigenvalues", "qr-algorithm", "power-iteration", "lanczos", "arnoldi"]
 +++
 

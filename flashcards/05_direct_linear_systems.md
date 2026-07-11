@@ -1,6 +1,6 @@
 +++
 order = 5
-subject = "Mathematics"
+subject = "mathematics"
 tags = ["math", "numerical-methods", "linear-algebra", "gaussian-elimination", "lu", "cholesky", "qr"]
 +++
 

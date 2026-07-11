@@ -1,6 +1,6 @@
 +++
 order = 1
-subject = "Mathematics"
+subject = "mathematics"
 tags = ["math", "numerical-methods", "floating-point", "error-analysis", "conditioning", "stability"]
 +++
 

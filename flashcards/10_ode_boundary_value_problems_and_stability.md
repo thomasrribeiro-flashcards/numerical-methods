@@ -1,6 +1,6 @@
 +++
 order = 10
-subject = "Mathematics"
+subject = "mathematics"
 tags = ["math", "numerical-methods", "ode", "bvp", "shooting", "stability", "a-stability", "stiff"]
 +++
 

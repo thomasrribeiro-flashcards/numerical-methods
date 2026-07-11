@@ -1,6 +1,6 @@
 +++
 order = 9
-subject = "Mathematics"
+subject = "mathematics"
 tags = ["math", "numerical-methods", "ode", "runge-kutta", "euler", "multistep", "adaptive"]
 +++
 

@@ -1,6 +1,6 @@
 +++
 order = 11
-subject = "Mathematics"
+subject = "mathematics"
 tags = ["math", "numerical-methods", "pde", "finite-differences", "heat-equation", "wave-equation", "cfl"]
 +++
 

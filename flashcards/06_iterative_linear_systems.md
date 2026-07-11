@@ -1,6 +1,6 @@
 +++
 order = 6
-subject = "Mathematics"
+subject = "mathematics"
 tags = ["math", "numerical-methods", "linear-algebra", "iterative", "jacobi", "conjugate-gradient", "gmres", "krylov"]
 +++
 
